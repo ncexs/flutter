@@ -45,6 +45,9 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
 
   // Fungsi menyimpan data
   void _saveData() {
+    // Ambil warna tema di sini untuk digunakan pada SnackBar
+    final Color primaryColor = Theme.of(context).colorScheme.primary;
+
     final String formattedDate = DateFormat('dd-MM-yyyy').format(_selectedDate);
     final String formattedTime = _selectedTime.format(context);
 
@@ -55,8 +58,8 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
         content: Text(
           'Data berhasil disimpan: $formattedDate pukul $formattedTime',
         ),
-        // Warna SnackBar untuk indikasi sukses
-        backgroundColor: const Color.fromARGB(255, 6, 92, 240),
+        // PERBAIKAN: Menggunakan warna tema untuk SnackBar
+        backgroundColor: primaryColor,
       ),
     );
   }
@@ -71,10 +74,10 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
       appBar: AppBar(
         title: const Text(
           'Create Data',
-          // Ambil warna teks/icon kontras dari tema
+          // Teks di AppBar sebaiknya kontras dengan primaryColor, umumnya putih.
           style: TextStyle(color: Colors.white),
         ),
-        // PERBAIKAN: Mengambil warna background AppBar dari tema
+        // Mengambil warna background AppBar dari tema
         backgroundColor: primaryColor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -100,7 +103,7 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
                 style: const TextStyle(fontSize: 16),
               ),
               style: ElevatedButton.styleFrom(
-                // PERBAIKAN: Mengambil warna tombol dari tema
+                // Menggunakan warna tombol dari tema
                 backgroundColor: primaryColor,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -128,7 +131,7 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
                 style: const TextStyle(fontSize: 16),
               ),
               style: ElevatedButton.styleFrom(
-                // PERBAIKAN: Mengambil warna tombol dari tema
+                // Menggunakan warna tombol dari tema
                 backgroundColor: primaryColor,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -148,7 +151,8 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
               child: ElevatedButton(
                 onPressed: _saveData,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 6, 92, 240),
+                  // PERBAIKAN: Menggunakan warna tema untuk tombol Simpan Data
+                  backgroundColor: primaryColor,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),

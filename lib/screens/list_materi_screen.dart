@@ -71,10 +71,7 @@ class ListMateriScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           'My Books',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.onPrimary,
-          ),
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
         ),
       ),
       body: Padding(
