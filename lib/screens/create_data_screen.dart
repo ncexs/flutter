@@ -55,8 +55,8 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
         content: Text(
           'Data berhasil disimpan: $formattedDate pukul $formattedTime',
         ),
-        // Warna SnackBar dipertahankan hijau untuk indikasi sukses
-        backgroundColor: Colors.green,
+        // Warna SnackBar untuk indikasi sukses
+        backgroundColor: const Color.fromARGB(255, 6, 92, 240),
       ),
     );
   }
@@ -142,13 +142,13 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
             ),
             const Expanded(child: SizedBox()),
 
-            // Tombol Simpan Data (Warna hijau dipertahankan untuk aksi sukses)
+            // Tombol Simpan Data
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _saveData,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: const Color.fromARGB(255, 6, 92, 240),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
