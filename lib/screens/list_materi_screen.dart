@@ -5,8 +5,9 @@ import 'detail_screen.dart'; // Template materi 1-5, 7
 import 'checkbox_screen.dart'; // Materi Pertemuan 6
 import 'spinner_autocomplete_screen.dart'; // Materi Pertemuan 8
 import 'create_data_screen.dart'; // Materi Pertemuan 9
-// WAJIB DITAMBAHKAN: Import TabLayoutScreen untuk Pertemuan 10
-import 'tab_layout_screen.dart';
+import 'tab_layout_screen.dart'; // Materi Pertemuan 10
+// WAJIB DITAMBAHKAN: Import SearchViewScreen untuk Pertemuan 11
+import 'search_view_screen.dart';
 
 // ===============================================
 // HALAMAN DAFTAR MATERI (STATELESS)
@@ -63,8 +64,12 @@ class ListMateriScreen extends StatelessWidget {
       {'judul': 'Pertemuan 7', 'sub': 'Project UTS'},
       {'judul': 'Pertemuan 8', 'sub': 'Spinner & AutoComplete'},
       {'judul': 'Pertemuan 9', 'sub': 'DatePicker & TimePicker'},
-      // PERUBAHAN: Tambahkan Pertemuan 10
       {'judul': 'Pertemuan 10', 'sub': 'Contoh Penggunaan TabLayout'},
+      // PERUBAHAN: Tambahkan Pertemuan 11
+      {
+        'judul': 'Pertemuan 11',
+        'sub': 'Bekerja dengan Search View (Filter List)',
+      },
     ];
 
     return Scaffold(
@@ -120,15 +125,14 @@ class ListMateriScreen extends StatelessWidget {
                       subtitle: Text(item['sub']!),
                       trailing: const Icon(Icons.arrow_forward_ios, size: 18),
 
-                      // 2. LOGIKA ONTAP DENGAN NAMA CLASS BARU
+                      // LOGIKA ONTAP
                       onTap: () {
                         switch (item['judul']) {
-                          // Kasus untuk halaman detail SEDERHANA
+                          // ... (Cases 1-5, 7 sama)
                           case 'Pertemuan 1':
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                // MEMANGGIL CLASS DetailScreen
                                 builder: (context) => DetailScreen(
                                   title: item['judul']!,
                                   content: const Text("Hello"),
@@ -140,7 +144,6 @@ class ListMateriScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                // MEMANGGIL CLASS DetailScreen
                                 builder: (context) => DetailScreen(
                                   title: item['judul']!,
                                   content: const Text("Isi Materi Pertemuan 2"),
@@ -152,7 +155,6 @@ class ListMateriScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                // MEMANGGIL CLASS DetailScreen
                                 builder: (context) => DetailScreen(
                                   title: item['judul']!,
                                   content: const Text("Isi Materi Pertemuan 3"),
@@ -164,7 +166,6 @@ class ListMateriScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                // MEMANGGIL CLASS DetailScreen
                                 builder: (context) => DetailScreen(
                                   title: "Toast and AlertDialog",
                                   content: _buildToastAlertContent(context),
@@ -176,7 +177,6 @@ class ListMateriScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                // MEMANGGIL CLASS DetailScreen
                                 builder: (context) => DetailScreen(
                                   title: item['judul']!,
                                   content: const Text("Isi Materi Pertemuan 5"),
@@ -188,7 +188,6 @@ class ListMateriScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                // MEMANGGIL CLASS DetailScreen
                                 builder: (context) => DetailScreen(
                                   title: item['judul']!,
                                   content: const Text("Isi Materi Project UTS"),
@@ -197,9 +196,8 @@ class ListMateriScreen extends StatelessWidget {
                             );
                             break;
 
-                          // Kasus untuk halaman KOMPLEKS (file sendiri)
+                          // ... (Cases 6, 8-10 sama)
                           case 'Pertemuan 6':
-                            // MEMANGGIL CLASS CheckboxScreen
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -208,7 +206,6 @@ class ListMateriScreen extends StatelessWidget {
                             );
                             break;
                           case 'Pertemuan 8':
-                            // MEMANGGIL CLASS SpinnerAutocompleteScreen
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -218,7 +215,6 @@ class ListMateriScreen extends StatelessWidget {
                             );
                             break;
                           case 'Pertemuan 9':
-                            // MEMANGGIL CLASS CreateDataScreen
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -226,13 +222,21 @@ class ListMateriScreen extends StatelessWidget {
                               ),
                             );
                             break;
-                          // PERUBAHAN: Tambahkan case untuk Pertemuan 10
                           case 'Pertemuan 10':
-                            // MEMANGGIL CLASS TabLayoutScreen
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const TabLayoutScreen(),
+                              ),
+                            );
+                            break;
+
+                          // PERUBAHAN: Tambahkan case untuk Pertemuan 11
+                          case 'Pertemuan 11':
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SearchViewScreen(),
                               ),
                             );
                             break;
