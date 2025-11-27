@@ -1,114 +1,61 @@
-# 📚 My Books Flutter App (Update Pertemuan 11)
+# 🚀 **[GANTI DENGAN NAMA APLIKASI ANDA] (Wajib Diubah)**
 
-Aplikasi ini berisi kumpulan materi praktikum Mobile Programming 1 yang diimplementasikan menggunakan Flutter.
+Dokumen ini menjelaskan bagian–bagian proyek Flutter yang **harus Anda modifikasi** agar aplikasi memiliki identitas sendiri dan tidak sama dengan contoh bawaan.
 
-## ✨ Yang Baru: Pertemuan 11 - Search View
+# **1. ⚙️ Modifikasi Utama (Semua Pertemuan)**
 
-Pembaruan utama dalam versi ini adalah implementasi fitur pencarian real-time untuk memfilter daftar.
+| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
+|------------|------------|------------------------|
+| **Warna Tema Utama** | lib/main.dart → properti **seedColor** | Ganti warna bawaan `Color.fromARGB(255, 6, 92, 240)` dengan warna lain yang Anda pilih. |
+| **Judul Aplikasi** | lib/main.dart → **title** | Ubah `'Aplikasi Mobile'` menjadi nama aplikasi Anda sendiri. |
+| **Nama Proyek** | pubspec.yaml → **name:** | Ganti `flutter_application` dengan nama proyek Anda. |
+| **Aset Gambar** | folder `assets/img/` dan `profil_screen.dart` | Ganti `background.jpeg` dan `profil.jpeg` dengan gambar milik Anda dan sesuaikan path di kode. |
+| **Item Navigasi** | bottom_nav_screen.dart | Ganti label dan ikon tab (misal: dari `Books` menjadi `Materi`, `Tugas`, dll). |
 
-| File Baru | Deskripsi |
-| :--- | :--- |
-| `lib/screens/search_view_screen.dart` | Implementasi fitur filter **real-time** menggunakan `TextField` dan `ListView.builder`. |
-| `lib/list_materi_screen.dart` | Penambahan item **Pertemuan 11: Bekerja dengan Search View (Filter List)**. |
+# **2. 👤 Modifikasi Layar Profil (profil_screen.dart)**
 
------
+| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
+|------------|------------|------------------------|
+| **Data Biodata** | profil_screen.dart → bagian `_buildInfoRow` | Ganti email, nomor HP, dan kampus dengan data Anda sendiri. |
+| **Logika Tombol** | profil_screen.dart → `_showadaptiveAlert` | Ganti pesan alert dan snackbar, atau tambahkan fungsi lain selain `_incrementCounter()`. |
+| **Tampilan Card** | profil_screen.dart | Ubah warna background container biodata. |
 
-## 🎨 Modifikasi Tampilan & Fungsi
+# **3. 📦 Modifikasi Pilihan (Pertemuan 6 & 8)**
 
-Fitur Search View pada Pertemuan 11 dirancang agar mudah diubah tampilannya. Berikut adalah beberapa bagian yang dapat dimodifikasi di file **`lib/screens/search_view_screen.dart`** untuk membuat tampilan yang berbeda:
+## **A. Checkbox & Radio Button**
 
-### 1\. Mengubah Data Sumber 📝
+| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
+|------------|------------|------------------------|
+| **Daftar Hobi/Opsi** | checkbox_screen.dart | Ganti opsi 'Painting', 'Reading', dll menjadi daftar baru. |
+| **Pesan Submit** | checkbox_screen.dart → `_showHobbies` | Ubah teks hasil yang muncul di snackbar. |
 
-Secara *default*, daftar ini menampilkan 12 bulan.
+## **B. Spinner & Autocomplete**
 
-  * **Tujuan Modifikasi:** Mengubah daftar yang difilter (misalnya menjadi daftar nama hewan, mata kuliah, atau kota).
-  * **Baris Kode:** Di bagian atas file.
+| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
+|------------|------------|------------------------|
+| **Data Spinner** | spinner_autocomplete_screen.dart → `_categories` | Ganti daftar kategori. |
+| **Data Autocomplete** | spinner_autocomplete_screen.dart → `_languages` | Ganti daftar autocomplete. |
+| **Tampilan Input** | spinner_autocomplete_screen.dart | Tambah prefixIcon, ubah hintText, atau ubah border. |
 
-<!-- end list -->
+# **4. 📅 Modifikasi Input Waktu (create_data_screen.dart)**
 
-```dart
-// search_view_screen.dart
+| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
+|------------|------------|------------------------|
+| **Logika Simpan** | create_data_screen.dart → `_saveData` | Ubah detail data yang ditampilkan, format tanggal/waktu, dll. |
+| **Tampilan Tombol** | create_data_screen.dart | Ubah bentuk tombol atau padding. |
 
-// Ubah data di sini sesuai kebutuhan
-const List<String> allMonths = [
-  'Januari',
-  'Februari',
-  'Maret',
-  // ... dst
-];
-```
+# **5. 📑 Modifikasi Tab Layout (Pertemuan 10)**
 
-### 2\. Mengubah Tampilan Item Daftar 🎴
+| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
+|------------|------------|------------------------|
+| **Jumlah Tab** | tab_layout_screen.dart | Ubah `length: 3` menjadi angka lain. |
+| **Isi Tab** | tab_layout_screen.dart | Ganti ikon/label tab. |
+| **Konten Tab** | tab_layout_screen.dart | Ubah konten yang ditampilkan di TabBarView. |
 
-Anda dapat mengubah bagaimana setiap item daftar (`ListTile`) ditampilkan.
+# **6. 🔍 Modifikasi Pencarian (Pertemuan 11)**
 
-  * **Tujuan Modifikasi:** Menambahkan *leading icon*, *subtitle*, atau mengubah warna teks.
-  * **Lokasi Kode:** Di dalam widget `ListView.builder`.
-
-#### Contoh Modifikasi (Menambahkan Icon dan Warna Kontainer):
-
-Ubah bagian `ListTile` di dalam `ListView.builder` menjadi seperti ini:
-
-```dart
-// search_view_screen.dart (di dalam build pada ListView.builder)
-// ...
-return Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-  child: Card( // Gunakan Card untuk tampilan yang lebih modern
-    elevation: 2,
-    child: ListTile(
-      leading: Icon(Icons.calendar_today, color: primaryColor), // Tambah Icon
-      title: Text(
-        month, 
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
-      subtitle: Text('Ini adalah Bulan $month'), // Tambah Subtitle
-      onTap: () {
-        // ... kode SnackBar
-      },
-    ),
-  ),
-);
-```
-
-### 3\. Mengubah Dekorasi Kolom Pencarian (TextField) 🔍
-
-Kolom pencarian (`TextField`) dapat diubah untuk memiliki bentuk, warna, atau ikon yang berbeda.
-
-  * **Tujuan Modifikasi:** Mengubah bentuk border, warna latar belakang, atau ikon hint.
-  * **Lokasi Kode:** Di dalam properti `decoration` pada `TextField`.
-
-#### Contoh Modifikasi (Mengubah Bentuk Border):
-
-Ubah `border: OutlineInputBorder(...)` menjadi `border: UnderlineInputBorder()` atau gunakan warna berbeda:
-
-```dart
-// search_view_screen.dart (di dalam TextField)
-// ...
-decoration: InputDecoration(
-  hintText: 'Cari Sesuatu...',
-  prefixIcon: const Icon(Icons.filter_alt), // Mengubah ikon
-  filled: true,
-  fillColor: Colors.grey[100], // Menambahkan warna latar belakang
-  border: UnderlineInputBorder(
-    borderSide: BorderSide(color: primaryColor, width: 2),
-  ),
-),
-// ...
-```
-
------
-
-## ⚙️ Modifikasi Tema Global
-
-Untuk mengubah warna aplikasi secara keseluruhan (AppBar, tombol, SnackBar), ubah nilai **`seedColor`** di file **`main.dart`**.
-
-```dart
-// main.dart
-// ...
-theme: ThemeData(
-  colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple), // Ganti Colors.purple ke warna lain
-  useMaterial3: true,
-),
-// ...
-```
+| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
+|------------|------------|------------------------|
+| **Data Sumber** | search_view_screen.dart → `allMonths` | Ganti seluruh list bulan menjadi data lain sesuai aplikasi Anda. |
+| **Tampilan Item Daftar** | search_view_screen.dart | Ubah ListTile jadi Card, atau tambah icon/subtitle. |
+| **Dekorasi Search** | search_view_screen.dart | Ubah hintText, prefixIcon, atau bentuk border. |
