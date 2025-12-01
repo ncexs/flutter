@@ -8,6 +8,8 @@ import 'create_data_screen.dart'; // Materi Pertemuan 9
 import 'tab_layout_screen.dart'; // Materi Pertemuan 10
 // WAJIB DITAMBAHKAN: Import SearchViewScreen untuk Pertemuan 11
 import 'search_view_screen.dart';
+// WAJIB DITAMBAHKAN: Import OptionContextScreen untuk Pertemuan 12
+import 'option_context_screen.dart'; // <<< TAMBAHAN P12 >>>
 
 // ===============================================
 // HALAMAN DAFTAR MATERI (STATELESS)
@@ -70,6 +72,9 @@ class ListMateriScreen extends StatelessWidget {
         'judul': 'Pertemuan 11',
         'sub': 'Bekerja dengan Search View (Filter List)',
       },
+      // <<< TAMBAHAN PERTEMUAN 12 >>>
+      {'judul': 'Pertemuan 12', 'sub': 'Option Menu dan Context Menu'},
+      // <<< END TAMBAHAN P12 >>>
     ];
 
     return Scaffold(
@@ -128,7 +133,7 @@ class ListMateriScreen extends StatelessWidget {
                       // LOGIKA ONTAP
                       onTap: () {
                         switch (item['judul']) {
-                          // ... (Cases 1-5, 7 sama)
+                          // ... (Cases 1-5, 7)
                           case 'Pertemuan 1':
                             Navigator.push(
                               context,
@@ -196,7 +201,7 @@ class ListMateriScreen extends StatelessWidget {
                             );
                             break;
 
-                          // ... (Cases 6, 8-10 sama)
+                          // ... (Cases 6, 8-10)
                           case 'Pertemuan 6':
                             Navigator.push(
                               context,
@@ -240,6 +245,19 @@ class ListMateriScreen extends StatelessWidget {
                               ),
                             );
                             break;
+
+                          // <<< CASE BARU PERTEMUAN 12 >>>
+                          case 'Pertemuan 12':
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const OptionContextScreen(),
+                              ),
+                            );
+                            break;
+                          // <<< END CASE BARU P12 >>>
+
                           default:
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
