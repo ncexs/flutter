@@ -2,6 +2,8 @@
 
 Dokumen ini menjelaskan bagian–bagian proyek Flutter yang **harus Anda modifikasi** agar aplikasi memiliki identitas sendiri dan tidak sama dengan contoh bawaan.
 
+---
+
 # **1. ⚙️ Modifikasi Utama (Semua Pertemuan)**
 
 | **Bagian** | **Lokasi** | **Yang Harus Diubah** |
@@ -12,6 +14,8 @@ Dokumen ini menjelaskan bagian–bagian proyek Flutter yang **harus Anda modifik
 | **Aset Gambar** | folder `assets/img/` dan `profil_screen.dart` | Ganti `background.jpeg` dan `profil.jpeg` dengan gambar milik Anda dan sesuaikan path di kode. |
 | **Item Navigasi** | bottom_nav_screen.dart | Ganti label dan ikon tab (misal: dari `Books` menjadi `Materi`, `Tugas`, dll). |
 
+---
+
 # **2. 👤 Modifikasi Layar Profil (profil_screen.dart)**
 
 | **Bagian** | **Lokasi** | **Yang Harus Diubah** |
@@ -19,6 +23,8 @@ Dokumen ini menjelaskan bagian–bagian proyek Flutter yang **harus Anda modifik
 | **Data Biodata** | profil_screen.dart → bagian `_buildInfoRow` | Ganti email, nomor HP, dan kampus dengan data Anda sendiri. |
 | **Logika Tombol** | profil_screen.dart → `_showadaptiveAlert` | Ganti pesan alert dan snackbar, atau tambahkan fungsi lain selain `_incrementCounter()`. |
 | **Tampilan Card** | profil_screen.dart | Ubah warna background container biodata. |
+
+---
 
 # **3. 📦 Modifikasi Pilihan (Pertemuan 6 & 8)**
 
@@ -37,12 +43,16 @@ Dokumen ini menjelaskan bagian–bagian proyek Flutter yang **harus Anda modifik
 | **Data Autocomplete** | spinner_autocomplete_screen.dart → `_languages` | Ganti daftar autocomplete. |
 | **Tampilan Input** | spinner_autocomplete_screen.dart | Tambah prefixIcon, ubah hintText, atau ubah border. |
 
+---
+
 # **4. 📅 Modifikasi Input Waktu (create_data_screen.dart)**
 
 | **Bagian** | **Lokasi** | **Yang Harus Diubah** |
 |------------|------------|------------------------|
 | **Logika Simpan** | create_data_screen.dart → `_saveData` | Ubah detail data yang ditampilkan, format tanggal/waktu, dll. |
 | **Tampilan Tombol** | create_data_screen.dart | Ubah bentuk tombol atau padding. |
+
+---
 
 # **5. 📑 Modifikasi Tab Layout (Pertemuan 10)**
 
@@ -52,6 +62,8 @@ Dokumen ini menjelaskan bagian–bagian proyek Flutter yang **harus Anda modifik
 | **Isi Tab** | tab_layout_screen.dart | Ganti ikon/label tab. |
 | **Konten Tab** | tab_layout_screen.dart | Ubah konten yang ditampilkan di TabBarView. |
 
+---
+
 # **6. 🔍 Modifikasi Pencarian (Pertemuan 11)**
 
 | **Bagian** | **Lokasi** | **Yang Harus Diubah** |
@@ -59,3 +71,13 @@ Dokumen ini menjelaskan bagian–bagian proyek Flutter yang **harus Anda modifik
 | **Data Sumber** | search_view_screen.dart → `allMonths` | Ganti seluruh list bulan menjadi data lain sesuai aplikasi Anda. |
 | **Tampilan Item Daftar** | search_view_screen.dart | Ubah ListTile jadi Card, atau tambah icon/subtitle. |
 | **Dekorasi Search** | search_view_screen.dart | Ubah hintText, prefixIcon, atau bentuk border. |
+
+---
+
+# **7. ⚙️ Modifikasi Menu (Pertemuan 12)**
+
+| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
+|------------|------------|------------------------|
+| **Opsi Menu Utama** | option_context_screen.dart → `AppBar.actions` | Ganti ikon dan item pada `PopupMenuButton` (misalnya 'settings', 'about', 'logout'). |
+| **Opsi Context Menu** | option_context_screen.dart → `_showContextMenu` | Ganti item dalam `showMenu<String>(items:...)` (misalnya 'edit', 'delete', 'archive'). |
+| **Logika Aksi** | option_context_screen.dart → `onSelected` dan `.then` | Ubah logika atau pesan `_showSnackBar` yang dipicu saat menu dipilih. |
