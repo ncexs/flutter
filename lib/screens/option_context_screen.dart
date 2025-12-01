@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 
 // ===============================================
 // HALAMAN PERTEMUAN 12 - OPTION MENU & CONTEXT MENU
+// (Diubah menjadi StatefulWidget untuk penanganan async yang aman)
 // ===============================================
 
-class OptionContextScreen extends StatelessWidget {
+class OptionContextScreen extends StatefulWidget {
   const OptionContextScreen({super.key});
 
-  // Fungsi helper untuk menampilkan SnackBar
-  void _showSnackBar(BuildContext context, String message) {
+  @override
+  State<OptionContextScreen> createState() => _OptionContextScreenState();
+}
+
+class _OptionContextScreenState extends State<OptionContextScreen> {
+  // 1. FUNGSI SNACKBAR - TIDAK PERLU ARGUMEN context
+  void _showSnackBar(String message) {
+    // Menggunakan properti context milik State class (aman)
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
@@ -18,15 +25,15 @@ class OptionContextScreen extends StatelessWidget {
     );
   }
 
-  // Fungsi untuk menampilkan Context Menu (showMenu) saat Long Press
-  void _showContextMenu(BuildContext context, Offset position) {
-    // showMenu digunakan untuk menampilkan menu pop-up di posisi spesifik
+  // 2. FUNGSI CONTEXT MENU - TIDAK PERLU ARGUMEN context
+  void _showContextMenu(Offset position) {
+    // showMenu mengembalikan Future, menandakan operasi asinkron
     showMenu<String>(
+      // Menggunakan properti context milik State class
       context: context,
-      // position ditentukan berdasarkan posisi Long Press pada layar
       position: RelativeRect.fromRect(
-        position & const Size(40, 40), // Ukuran kecil di sekitar titik tekan
-        Offset.zero & MediaQuery.of(context).size, // Ukuran seluruh layar
+        position & const Size(40, 40),
+        Offset.zero & MediaQuery.of(context).size,
       ),
       items: <PopupMenuEntry<String>>[
         const PopupMenuItem<String>(
@@ -53,8 +60,12 @@ class OptionContextScreen extends StatelessWidget {
         ),
       ],
     ).then((String? result) {
+      // ✅ PERBAIKAN FINAL: Cek 'mounted'
+      if (!mounted) return;
+
       if (result != null) {
-        _showSnackBar(context, 'Context Menu: Aksi "$result" dipilih');
+        // Panggil _showSnackBar tanpa passing context lagi
+        _showSnackBar('Context Menu: Aksi "$result" dipilih');
       }
     });
   }
@@ -73,24 +84,21 @@ class OptionContextScreen extends StatelessWidget {
         backgroundColor: primaryColor,
         iconTheme: IconThemeData(color: onPrimaryColor),
 
-        // ===================================
         // Option Menu (Actions di AppBar)
-        // ===================================
         actions: [
-          // Option 1: Ikon Pencarian
           IconButton(
             icon: const Icon(Icons.search),
             tooltip: 'Cari',
             onPressed: () {
-              _showSnackBar(context, 'Option Menu: Tombol Cari diklik');
+              // Panggil _showSnackBar tanpa passing context
+              _showSnackBar('Option Menu: Tombol Cari diklik');
             },
           ),
-
-          // Option 2: Overflow Menu (Tiga Titik Vertikal)
           PopupMenuButton<String>(
             icon: const Icon(Icons.more_vert),
             onSelected: (String result) {
-              _showSnackBar(context, 'Option Menu: Opsi "$result" dipilih');
+              // Panggil _showSnackBar tanpa passing context
+              _showSnackBar('Option Menu: Opsi "$result" dipilih');
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
               const PopupMenuItem<String>(
@@ -121,14 +129,11 @@ class OptionContextScreen extends StatelessWidget {
               ),
             ),
 
-            // ===================================
             // Context Menu (Triggered by Long Press)
-            // ===================================
-            // GestureDetector membungkus Card agar bisa merespons long press
             GestureDetector(
-              // Mendapatkan posisi ketukan untuk menempatkan menu yang tepat
               onLongPressStart: (details) {
-                _showContextMenu(context, details.globalPosition);
+                // Panggil _showContextMenu tanpa passing context
+                _showContextMenu(details.globalPosition);
               },
               child: Card(
                 elevation: 6,
