@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-// ===============================================
-// HALAMAN PERTEMUAN 12 - OPTION MENU & CONTEXT MENU
-// (Diubah menjadi StatefulWidget untuk penanganan async yang aman)
-// ===============================================
-
+// Kelas ini menggunakan StatefulWidget karena kita perlu mengubah tampilan
+// (teks pilihan) saat user memilih menu.
 class OptionContextScreen extends StatefulWidget {
   const OptionContextScreen({super.key});
 
@@ -13,107 +10,142 @@ class OptionContextScreen extends StatefulWidget {
 }
 
 class _OptionContextScreenState extends State<OptionContextScreen> {
-  // 1. FUNGSI SNACKBAR - TIDAK PERLU ARGUMEN context
-  void _showSnackBar(String message) {
-    // Menggunakan properti context milik State class (aman)
+  // Variabel untuk menyimpan hasil pilihan agar bisa ditampilkan di layar
+  String _pilihanOptionMenu = "Belum ada yang dipilih";
+  String _pilihanContextMenu = "Belum ada yang dipilih";
+
+  // ------------------------------------------------------------------------
+  // FUNGSI 1: Menangani logika saat Option Menu (Titik Tiga) dipilih
+  // ------------------------------------------------------------------------
+  void _pilihOptionMenu(String value) {
+    setState(() {
+      _pilihanOptionMenu = value;
+    });
+
+    // Menampilkan pesan kecil di bawah (SnackBar)
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: Text("Anda memilih menu: $value"),
+        // Mengambil warna dari tema utama (main.dart)
         backgroundColor: Theme.of(context).colorScheme.primary,
-        duration: const Duration(milliseconds: 1500),
+        duration: const Duration(seconds: 1),
       ),
     );
   }
 
-  // 2. FUNGSI CONTEXT MENU - TIDAK PERLU ARGUMEN context
-  void _showContextMenu(Offset position) {
-    // showMenu mengembalikan Future, menandakan operasi asinkron
-    showMenu<String>(
-      // Menggunakan properti context milik State class
+  // ------------------------------------------------------------------------
+  // FUNGSI 2: Menampilkan Context Menu saat ditekan lama (Long Press)
+  // ------------------------------------------------------------------------
+  // Kita menggunakan 'async' dan 'await' karena memunculkan menu butuh waktu
+  // menunggu input dari user.
+  Future<void> _tampilkanContextMenu(Offset posisiKlik) async {
+    // Mencari ukuran layar/overlay untuk penentuan posisi menu
+    final RenderBox overlay =
+        Overlay.of(context).context.findRenderObject() as RenderBox;
+
+    // Menampilkan menu pop-up di posisi jari user
+    final String? hasilPilihan = await showMenu<String>(
       context: context,
+      // Mengatur posisi menu muncul (RelativeRect)
       position: RelativeRect.fromRect(
-        position & const Size(40, 40),
-        Offset.zero & MediaQuery.of(context).size,
+        posisiKlik & const Size(40, 40), // Area sentuh
+        Offset.zero & overlay.size, // Ukuran layar keseluruhan
       ),
-      items: <PopupMenuEntry<String>>[
-        const PopupMenuItem<String>(
-          value: 'edit',
-          child: Row(
-            children: [Icon(Icons.edit), SizedBox(width: 8), Text('Edit Data')],
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'delete',
+      // Daftar Item Menu
+      items: [
+        const PopupMenuItem(
+          value: 'Edit Data',
           child: Row(
             children: [
-              Icon(Icons.delete),
-              SizedBox(width: 8),
+              Icon(Icons.edit, color: Colors.blue),
+              SizedBox(width: 10),
+              Text('Edit Data'),
+            ],
+          ),
+        ),
+        const PopupMenuItem(
+          value: 'Hapus Data',
+          child: Row(
+            children: [
+              Icon(Icons.delete, color: Colors.red),
+              SizedBox(width: 10),
               Text('Hapus Data'),
             ],
           ),
         ),
-        const PopupMenuItem<String>(
-          value: 'archive',
-          child: Row(
-            children: [Icon(Icons.archive), SizedBox(width: 8), Text('Arsip')],
-          ),
-        ),
       ],
-    ).then((String? result) {
-      // ✅ PERBAIKAN FINAL: Cek 'mounted'
-      if (!mounted) return;
+    );
 
-      if (result != null) {
-        // Panggil _showSnackBar tanpa passing context lagi
-        _showSnackBar('Context Menu: Aksi "$result" dipilih');
-      }
-    });
+    // Cek 'mounted' (apakah layar masih aktif?) sebelum update state
+    // Ini penting di Flutter modern untuk mencegah error
+    if (!mounted) return;
+
+    // Jika user memilih sesuatu (hasil tidak null)
+    if (hasilPilihan != null) {
+      setState(() {
+        _pilihanContextMenu = hasilPilihan;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Aksi Context Menu: $hasilPilihan")),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final Color onPrimaryColor = Theme.of(context).colorScheme.onPrimary;
-    final Color primaryColor = Theme.of(context).colorScheme.primary;
+    // Mengambil skema warna dari main.dart biar seragam
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'P12: Option & Context Menu',
-          style: TextStyle(color: onPrimaryColor),
-        ),
-        backgroundColor: primaryColor,
-        iconTheme: IconThemeData(color: onPrimaryColor),
+        title: const Text("Pertemuan 12: Menu"),
+        // Warna AppBar mengikuti tema primary
+        backgroundColor: colorScheme.primary,
+        foregroundColor: colorScheme.onPrimary,
 
-        // Option Menu (Actions di AppBar)
+        // =======================================================
+        // 1. IMPLEMENTASI OPTION MENU (Tombol Titik Tiga di Pojok Kanan)
+        // =======================================================
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            tooltip: 'Cari',
-            onPressed: () {
-              // Panggil _showSnackBar tanpa passing context
-              _showSnackBar('Option Menu: Tombol Cari diklik');
-            },
-          ),
           PopupMenuButton<String>(
-            icon: const Icon(Icons.more_vert),
-            onSelected: (String result) {
-              // Panggil _showSnackBar tanpa passing context
-              _showSnackBar('Option Menu: Opsi "$result" dipilih');
+            // Fungsi yang dijalankan saat item dipilih
+            onSelected: _pilihOptionMenu,
+            // Membangun daftar item menu
+            itemBuilder: (BuildContext context) {
+              return [
+                const PopupMenuItem<String>(
+                  value: 'Upload',
+                  child: Row(
+                    children: [
+                      Icon(Icons.cloud_upload, color: Colors.grey),
+                      SizedBox(width: 8),
+                      Text('Upload'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'Settings',
+                  child: Row(
+                    children: [
+                      Icon(Icons.settings, color: Colors.grey),
+                      SizedBox(width: 8),
+                      Text('Settings'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'Logout',
+                  child: Row(
+                    children: [
+                      Icon(Icons.logout, color: Colors.grey),
+                      SizedBox(width: 8),
+                      Text('Logout'),
+                    ],
+                  ),
+                ),
+              ];
             },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              const PopupMenuItem<String>(
-                value: 'about',
-                child: Text('Tentang Aplikasi'),
-              ),
-              const PopupMenuItem<String>(
-                value: 'settings',
-                child: Text('Pengaturan'),
-              ),
-              const PopupMenuItem<String>(
-                value: 'logout',
-                child: Text('Logout'),
-              ),
-            ],
           ),
         ],
       ),
@@ -121,47 +153,72 @@ class _OptionContextScreenState extends State<OptionContextScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: Text(
-                'Menu di atas (AppBar) adalah Option Menu.',
-                style: TextStyle(fontSize: 16),
+            // Menampilkan hasil Option Menu
+            const Text(
+              "Status Option Menu:",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              _pilihanOptionMenu,
+              style: TextStyle(
+                fontSize: 18,
+                color: colorScheme.primary, // Warna teks ikut tema
               ),
             ),
+            const SizedBox(height: 30),
+            const Divider(), // Garis pemisah
+            const SizedBox(height: 30),
 
-            // Context Menu (Triggered by Long Press)
+            // Menampilkan hasil Context Menu
+            const Text(
+              "Status Context Menu:",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              _pilihanContextMenu,
+              style: TextStyle(
+                fontSize: 18,
+                color: colorScheme.primary, // Warna teks ikut tema
+              ),
+            ),
+            const SizedBox(height: 30),
+
+            // =======================================================
+            // 2. IMPLEMENTASI CONTEXT MENU (Tekan Lama pada Widget)
+            // =======================================================
             GestureDetector(
+              // Mendeteksi saat user menekan lama
               onLongPressStart: (details) {
-                // Panggil _showContextMenu tanpa passing context
-                _showContextMenu(details.globalPosition);
+                // Memanggil fungsi untuk memunculkan menu
+                // details.globalPosition adalah koordinat jari di layar
+                _tampilkanContextMenu(details.globalPosition);
               },
-              child: Card(
-                elevation: 6,
-                shape: RoundedRectangleBorder(
+              child: Container(
+                width: 250,
+                height: 100,
+                decoration: BoxDecoration(
+                  // Warna background container (primaryContainer dari tema)
+                  color: colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      // Nilai alpha adalah 0.0 sampai 1.0
+                      color: Colors.grey.withValues(alpha: 0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
                 ),
-                margin: const EdgeInsets.symmetric(horizontal: 40),
-                child: Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Column(
-                    children: [
-                      Icon(Icons.touch_app, size: 60, color: primaryColor),
-                      const SizedBox(height: 15),
-                      const Text(
-                        'TEKAN LAMA (LONG PRESS)',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      const Text(
-                        'Tekan lama card ini untuk memunculkan Context Menu.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
-                      ),
-                    ],
+                alignment: Alignment.center,
+                child: Text(
+                  "Tekan Tahan Disini\n(Long Press)",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    // Warna teks agar kontras dengan container
+                    color: colorScheme.onPrimaryContainer,
                   ),
                 ),
               ),

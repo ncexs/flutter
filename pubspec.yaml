@@ -37,6 +37,10 @@ dependencies:
   awesome_bottom_bar: ^1.2.4
   adaptive_dialog: ^2.5.0
   intl: ^0.19.0
+  # Library untuk navigasi bawah yang modern (Sesuai Materi Slide 115)
+  salomon_bottom_bar: ^3.3.2
+  # Library tambahan untuk koleksi ikon (Opsional, sesuai Slide 76)
+  icons_plus: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +69,7 @@ flutter:
     # ===== PERUBAHAN DI SINI =====
     # Nama file disesuaikan dengan yang ada di profil_screen.dart
     - "assets/img/background.jpeg"
+    - "assets/img/background2.jpeg"
     - "assets/img/profil.jpeg"
     # =============================
 

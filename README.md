@@ -1,83 +1,111 @@
-# 🚀 **[GANTI DENGAN NAMA APLIKASI ANDA] (Wajib Diubah)**
+# 🚀 Aplikasi Mobile Flutter
 
-Dokumen ini menjelaskan bagian–bagian proyek Flutter yang **harus Anda modifikasi** agar aplikasi memiliki identitas sendiri dan tidak sama dengan contoh bawaan.
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 
----
-
-# **1. ⚙️ Modifikasi Utama (Semua Pertemuan)**
-
-| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
-|------------|------------|------------------------|
-| **Warna Tema Utama** | lib/main.dart → properti **seedColor** | Ganti warna bawaan `Color.fromARGB(255, 6, 92, 240)` dengan warna lain yang Anda pilih. |
-| **Judul Aplikasi** | lib/main.dart → **title** | Ubah `'Aplikasi Mobile'` menjadi nama aplikasi Anda sendiri. |
-| **Nama Proyek** | pubspec.yaml → **name:** | Ganti `flutter_application` dengan nama proyek Anda. |
-| **Aset Gambar** | folder `assets/img/` dan `profil_screen.dart` | Ganti `background.jpeg` dan `profil.jpeg` dengan gambar milik Anda dan sesuaikan path di kode. |
-| **Item Navigasi** | bottom_nav_screen.dart | Ganti label dan ikon tab (misal: dari `Books` menjadi `Materi`, `Tugas`, dll). |
+> **⚠️ PENTING:** Proyek ini adalah implementasi tugas Mobile Programming (Pertemuan 1 - 12).
+> Dokumen ini berisi panduan bagian mana saja yang **WAJIB DIMODIFIKASI** agar aplikasi memiliki identitas sendiri dan tidak dianggap plagiat.
 
 ---
 
-# **2. 👤 Modifikasi Layar Profil (profil_screen.dart)**
+## 🛠️ **PANDUAN MODIFIKASI (Checklist Wajib)**
 
-| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
-|------------|------------|------------------------|
-| **Data Biodata** | profil_screen.dart → bagian `_buildInfoRow` | Ganti email, nomor HP, dan kampus dengan data Anda sendiri. |
-| **Logika Tombol** | profil_screen.dart → `_showadaptiveAlert` | Ganti pesan alert dan snackbar, atau tambahkan fungsi lain selain `_incrementCounter()`. |
-| **Tampilan Card** | profil_screen.dart | Ubah warna background container biodata. |
+Ikuti langkah-langkah di bawah ini untuk mengubah identitas aplikasi.
 
----
+### **1. ⚙️ Modifikasi Utama (Global)**
+*Bagian ini mengubah identitas dasar aplikasi.*
 
-# **3. 📦 Modifikasi Pilihan (Pertemuan 6 & 8)**
-
-## **A. Checkbox & Radio Button**
-
-| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
-|------------|------------|------------------------|
-| **Daftar Hobi/Opsi** | checkbox_screen.dart | Ganti opsi 'Painting', 'Reading', dll menjadi daftar baru. |
-| **Pesan Submit** | checkbox_screen.dart → `_showHobbies` | Ubah teks hasil yang muncul di snackbar. |
-
-## **B. Spinner & Autocomplete**
-
-| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
-|------------|------------|------------------------|
-| **Data Spinner** | spinner_autocomplete_screen.dart → `_categories` | Ganti daftar kategori. |
-| **Data Autocomplete** | spinner_autocomplete_screen.dart → `_languages` | Ganti daftar autocomplete. |
-| **Tampilan Input** | spinner_autocomplete_screen.dart | Tambah prefixIcon, ubah hintText, atau ubah border. |
+| **Bagian** | **Lokasi File** | **Instruksi Perubahan** |
+|------------|-----------------|-------------------------|
+| **Warna Tema** | `lib/main.dart` | Ganti `seedColor: Color.fromARGB(...)` dengan warna pilihan Anda. |
+| **Palet Warna** | `lib/style/color.dart` | Sesuaikan `primaryColor`, `buttonColor`, dll agar senada dengan tema baru. |
+| **Judul App** | `lib/main.dart` | Ubah properti `title: '...'` menjadi nama aplikasi Anda. |
+| **Nama Proyek** | `pubspec.yaml` | Ganti `name: flutter_application` dengan nama unik (huruf kecil, tanpa spasi). |
+| **Aset Gambar** | `assets/img/` | Timpa file `background2.jpeg` & `office.png` dengan gambar baru milik Anda. |
+| **Navigasi** | `bottom_nav_screen.dart` | Ganti label tab (misal: `Books` ➝ `Materi`) dan ikonnya. |
 
 ---
 
-# **4. 📅 Modifikasi Input Waktu (create_data_screen.dart)**
+### **2. 🔐 Modifikasi Halaman Autentikasi**
+*Halaman pertama yang dilihat pengguna (Login, Register, Welcome).*
 
-| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
-|------------|------------|------------------------|
-| **Logika Simpan** | create_data_screen.dart → `_saveData` | Ubah detail data yang ditampilkan, format tanggal/waktu, dll. |
-| **Tampilan Tombol** | create_data_screen.dart | Ubah bentuk tombol atau padding. |
-
----
-
-# **5. 📑 Modifikasi Tab Layout (Pertemuan 10)**
-
-| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
-|------------|------------|------------------------|
-| **Jumlah Tab** | tab_layout_screen.dart | Ubah `length: 3` menjadi angka lain. |
-| **Isi Tab** | tab_layout_screen.dart | Ganti ikon/label tab. |
-| **Konten Tab** | tab_layout_screen.dart | Ubah konten yang ditampilkan di TabBarView. |
+| **Bagian** | **Lokasi File** | **Instruksi Perubahan** |
+|------------|-----------------|-------------------------|
+| **Sambutan** | `welcome_page.dart` | Ubah teks `"Discover your Dream"` dengan slogan aplikasi Anda. |
+| **Ilustrasi** | `welcome_page.dart` | Pastikan nama file gambar sesuai dengan aset baru Anda. |
+| **Form Login** | `login_page.dart` | Ubah judul `"Welcome Back"` atau hint text pada input. |
+| **Form Register**| `register_page.dart` | Ubah judul `"Get Started"` atau label input. |
+| **Background** | `custom_scaffold.dart` | Pastikan path gambar background sesuai dengan file baru Anda. |
 
 ---
 
-# **6. 🔍 Modifikasi Pencarian (Pertemuan 11)**
+### **3. 👤 Modifikasi Layar Profil**
+*Halaman biodata diri mahasiswa.*
 
-| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
-|------------|------------|------------------------|
-| **Data Sumber** | search_view_screen.dart → `allMonths` | Ganti seluruh list bulan menjadi data lain sesuai aplikasi Anda. |
-| **Tampilan Item Daftar** | search_view_screen.dart | Ubah ListTile jadi Card, atau tambah icon/subtitle. |
-| **Dekorasi Search** | search_view_screen.dart | Ubah hintText, prefixIcon, atau bentuk border. |
+| **Bagian** | **Lokasi File** | **Instruksi Perubahan** |
+|------------|-----------------|-------------------------|
+| **Biodata** | `profil_screen.dart` | **Wajib:** Ganti Nama, Email, NIM, dan Kampus dengan data Anda. |
+| **Tombol** | `profil_screen.dart` | Ubah pesan pada `_showadaptiveAlert` agar berbeda. |
+| **Tampilan** | `profil_screen.dart` | Ganti warna container atau bentuk foto profil. |
 
 ---
 
-# **7. ⚙️ Modifikasi Menu (Pertemuan 12)**
+### **4. 📦 Modifikasi Input & Data (Pertemuan 6-11)**
 
-| **Bagian** | **Lokasi** | **Yang Harus Diubah** |
-|------------|------------|------------------------|
-| **Opsi Menu Utama** | option_context_screen.dart → `AppBar.actions` | Ganti ikon dan item pada `PopupMenuButton` (misalnya 'settings', 'about', 'logout'). |
-| **Opsi Context Menu** | option_context_screen.dart → `_showContextMenu` | Ganti item dalam `showMenu<String>(items:...)` (misalnya 'edit', 'delete', 'archive'). |
-| **Logika Aksi** | option_context_screen.dart → `onSelected` dan `.then` | Ubah logika atau pesan `_showSnackBar` yang dipicu saat menu dipilih. |
+#### **A. Checkbox & Pilihan (Pertemuan 6)**
+* **File:** `checkbox_screen.dart`
+* **Ubah:** Ganti daftar hobi default ('Painting', 'Reading') menjadi skill atau kegemaran lain.
+* **Ubah:** Edit pesan SnackBar yang muncul saat tombol ditekan.
+
+#### **B. Spinner & Autocomplete (Pertemuan 8)**
+* **File:** `spinner_autocomplete_screen.dart`
+* **Ubah:** Ganti data list `_categories` dan `_languages` dengan topik lain.
+* **Ubah:** Ganti `hintText` atau ikon pada form input.
+
+#### **C. Input Waktu (Pertemuan 9)**
+* **File:** `create_data_screen.dart`
+* **Ubah:** Modifikasi format tanggal atau pesan sukses pada fungsi `_saveData`.
+
+#### **D. Tab Layout (Pertemuan 10)**
+* **File:** `tab_layout_screen.dart`
+* **Ubah:** Ganti jumlah tab, ikon, dan label judul tab.
+
+#### **E. Pencarian (Pertemuan 11)**
+* **File:** `search_view_screen.dart`
+* **Ubah:** Ganti data dummy `allMonths` menjadi data lain (misal: Daftar Teman, Daftar Buah).
+
+#### **F. Menu (Pertemuan 12)**
+* **File:** `option_context_screen.dart`
+* **Option Menu:** Ganti item menu (misal: 'Settings' ➝ 'Pengaturan').
+* **Context Menu:** Ganti opsi Long Press (misal: 'Edit' ➝ 'Ubah').
+
+---
+
+## 💻 **CARA RUN**
+
+### **Cara Menjalankan Aplikasi**
+1.  **Install Library** (Wajib saat pertama kali download):
+    ```bash
+    flutter pub get
+    ```
+2.  **Jalankan Aplikasi**:
+    ```bash
+    flutter run
+    ```
+
+### **⚠️ Troubleshooting (Solusi Error)**
+
+| **Masalah** | **Solusi** |
+|------------|------------------------|
+| **Gambar Hilang** | Cek folder `assets/img/`. Pastikan nama file sama persis dengan di kodingan (huruf besar/kecil berpengaruh). |
+| **Error Nama Proyek** | Jika mengganti nama di `pubspec.yaml`, jalankan `flutter clean` lalu `flutter pub get`. |
+| **Symlink (Windows)** | Jika muncul error symlink, jalankan VS Code sebagai **Administrator**. |
+
+---
+
+## 📦 **Packages yang Digunakan**
+* `flutter/material.dart`
+* [`salomon_bottom_bar`](https://pub.dev/packages/salomon_bottom_bar)
+* [`icons_plus`](https://pub.dev/packages/icons_plus)
+* [`intl`](https://pub.dev/packages/intl)
+* [`adaptive_dialog`](https://pub.dev/packages/adaptive_dialog)
