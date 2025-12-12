@@ -41,6 +41,9 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   # Library tambahan untuk koleksi ikon (Opsional, sesuai Slide 76)
   icons_plus: ^5.0.0
+  audioplayers: ^5.2.1  # Untuk Audio
+  video_player: ^2.8.1  # Untuk Video
+  chewie: ^1.7.1        # Untuk Tampilan Kontrol Video
 
 dev_dependencies:
   flutter_test:
@@ -68,9 +71,9 @@ flutter:
   assets:
     # ===== PERUBAHAN DI SINI =====
     # Nama file disesuaikan dengan yang ada di profil_screen.dart
-    - "assets/img/background.jpeg"
-    - "assets/img/background2.jpeg"
-    - "assets/img/profil.jpeg"
+    - assets/img/
+    - assets/audio/
+    - assets/video/
     # =============================
 
   # An image asset can refer to one or more resolution-specific "variants", see

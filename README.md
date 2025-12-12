@@ -3,7 +3,7 @@
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 
-> **⚠️ PENTING:** Proyek ini adalah implementasi tugas Mobile Programming (Pertemuan 1 - 12).
+> **⚠️ PENTING:** Proyek ini adalah implementasi tugas Mobile Programming (Pertemuan 1 - 13).
 > Dokumen ini berisi panduan bagian mana saja yang **WAJIB DIMODIFIKASI** agar aplikasi memiliki identitas sendiri dan tidak dianggap plagiat.
 
 ---
@@ -50,7 +50,7 @@ Ikuti langkah-langkah di bawah ini untuk mengubah identitas aplikasi.
 
 ---
 
-### **4. 📦 Modifikasi Input & Data (Pertemuan 6-11)**
+### **4. 📦 Modifikasi Input & Data (Pertemuan 6-13)**
 
 #### **A. Checkbox & Pilihan (Pertemuan 6)**
 * **File:** `checkbox_screen.dart`
@@ -79,6 +79,11 @@ Ikuti langkah-langkah di bawah ini untuk mengubah identitas aplikasi.
 * **Option Menu:** Ganti item menu (misal: 'Settings' ➝ 'Pengaturan').
 * **Context Menu:** Ganti opsi Long Press (misal: 'Edit' ➝ 'Ubah').
 
+#### **G. Multimedia Audio & Video (Pertemuan 13)**
+* **File:** `multimedia_screen.dart`
+* **Aset:** Ganti file `music.mp3` di folder `assets/audio/` dan `video.mp4` di `assets/video/` dengan file milikmu.
+* **Ubah:** Ganti gambar cover album di tampilan Audio Player.
+
 ---
 
 ## 💻 **CARA RUN**
@@ -97,7 +102,8 @@ Ikuti langkah-langkah di bawah ini untuk mengubah identitas aplikasi.
 
 | **Masalah** | **Solusi** |
 |------------|------------------------|
-| **Gambar Hilang** | Cek folder `assets/img/`. Pastikan nama file sama persis dengan di kodingan (huruf besar/kecil berpengaruh). |
+| **Gambar/Video Hilang** | Cek folder `assets/`. Pastikan nama file sama persis dengan di kodingan (huruf besar/kecil berpengaruh). |
+| **Video Lag (Patah-patah)** | Ini wajar di Emulator/Debug Mode. Coba jalankan di HP asli atau gunakan mode release (`flutter run -d chrome --release`). |
 | **Error Nama Proyek** | Jika mengganti nama di `pubspec.yaml`, jalankan `flutter clean` lalu `flutter pub get`. |
 | **Symlink (Windows)** | Jika muncul error symlink, jalankan VS Code sebagai **Administrator**. |
 
@@ -109,3 +115,6 @@ Ikuti langkah-langkah di bawah ini untuk mengubah identitas aplikasi.
 * [`icons_plus`](https://pub.dev/packages/icons_plus)
 * [`intl`](https://pub.dev/packages/intl)
 * [`adaptive_dialog`](https://pub.dev/packages/adaptive_dialog)
+* [`audioplayers`](https://pub.dev/packages/audioplayers) (Pertemuan 13)
+* [`video_player`](https://pub.dev/packages/video_player) (Pertemuan 13)
+* [`chewie`](https://pub.dev/packages/chewie) (Pertemuan 13)

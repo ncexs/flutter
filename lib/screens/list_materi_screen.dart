@@ -6,10 +6,9 @@ import 'checkbox_screen.dart'; // Materi Pertemuan 6
 import 'spinner_autocomplete_screen.dart'; // Materi Pertemuan 8
 import 'create_data_screen.dart'; // Materi Pertemuan 9
 import 'tab_layout_screen.dart'; // Materi Pertemuan 10
-// WAJIB DITAMBAHKAN: Import SearchViewScreen untuk Pertemuan 11
-import 'search_view_screen.dart';
-// WAJIB DITAMBAHKAN: Import OptionContextScreen untuk Pertemuan 12
-import 'option_context_screen.dart'; // <<< TAMBAHAN P12 >>>
+import 'search_view_screen.dart'; // Materi Pertemuan 11
+import 'option_context_screen.dart'; // Materi Pertemuan 12
+import 'multimedia_screen.dart'; // Materi Pertemuan 13
 
 // ===============================================
 // HALAMAN DAFTAR MATERI (STATELESS)
@@ -67,14 +66,15 @@ class ListMateriScreen extends StatelessWidget {
       {'judul': 'Pertemuan 8', 'sub': 'Spinner & AutoComplete'},
       {'judul': 'Pertemuan 9', 'sub': 'DatePicker & TimePicker'},
       {'judul': 'Pertemuan 10', 'sub': 'Contoh Penggunaan TabLayout'},
-      // PERUBAHAN: Tambahkan Pertemuan 11
+      // Tambahkan Pertemuan 11
       {
         'judul': 'Pertemuan 11',
         'sub': 'Bekerja dengan Search View (Filter List)',
       },
-      // <<< TAMBAHAN PERTEMUAN 12 >>>
+      // Tambahkan Pertemuan 12
       {'judul': 'Pertemuan 12', 'sub': 'Option Menu dan Context Menu'},
-      // <<< END TAMBAHAN P12 >>>
+      // Tambahkan Pertemuan 13
+      {'judul': 'Pertemuan 13', 'sub': 'Multimedia (Audio & Video Player)'},
     ];
 
     return Scaffold(
@@ -236,7 +236,7 @@ class ListMateriScreen extends StatelessWidget {
                             );
                             break;
 
-                          // PERUBAHAN: Tambahkan case untuk Pertemuan 11
+                          // Tambahkan case untuk Pertemuan 11
                           case 'Pertemuan 11':
                             Navigator.push(
                               context,
@@ -246,7 +246,7 @@ class ListMateriScreen extends StatelessWidget {
                             );
                             break;
 
-                          // <<< CASE BARU PERTEMUAN 12 >>>
+                          // Tambahkan case untuk Pertemuan 12
                           case 'Pertemuan 12':
                             Navigator.push(
                               context,
@@ -256,7 +256,17 @@ class ListMateriScreen extends StatelessWidget {
                               ),
                             );
                             break;
-                          // <<< END CASE BARU P12 >>>
+
+                          // Tambahkan case untuk Pertemuan 13
+                          case 'Pertemuan 13':
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                // Panggil nama class yang baru
+                                builder: (context) => const MultimediaScreen(),
+                              ),
+                            );
+                            break;
 
                           default:
                             ScaffoldMessenger.of(context).showSnackBar(
