@@ -9,6 +9,7 @@ import 'tab_layout_screen.dart'; // Materi Pertemuan 10
 import 'search_view_screen.dart'; // Materi Pertemuan 11
 import 'option_context_screen.dart'; // Materi Pertemuan 12
 import 'multimedia_screen.dart'; // Materi Pertemuan 13
+import 'maps_screen.dart'; // Materi Pertemuan 14
 
 // ===============================================
 // HALAMAN DAFTAR MATERI (STATELESS)
@@ -75,6 +76,8 @@ class ListMateriScreen extends StatelessWidget {
       {'judul': 'Pertemuan 12', 'sub': 'Option Menu dan Context Menu'},
       // Tambahkan Pertemuan 13
       {'judul': 'Pertemuan 13', 'sub': 'Multimedia (Audio & Video Player)'},
+      // Tambahkan Pertemuan 14
+      {'judul': 'Pertemuan 14', 'sub': 'Map API (GPS & OpenStreetMap)'},
     ];
 
     return Scaffold(
@@ -264,6 +267,16 @@ class ListMateriScreen extends StatelessWidget {
                               MaterialPageRoute(
                                 // Panggil nama class yang baru
                                 builder: (context) => const MultimediaScreen(),
+                              ),
+                            );
+                            break;
+
+                          // Tambahkan case untuk Pertemuan 14
+                          case 'Pertemuan 14':
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MapsScreen(),
                               ),
                             );
                             break;

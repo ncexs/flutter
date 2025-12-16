@@ -3,7 +3,7 @@
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 
-> **⚠️ PENTING:** Proyek ini adalah implementasi tugas Mobile Programming (Pertemuan 1 - 13).
+> **⚠️ PENTING:** Proyek ini adalah implementasi tugas Mobile Programming (Pertemuan 1 - 14).
 > Dokumen ini berisi panduan bagian mana saja yang **WAJIB DIMODIFIKASI** agar aplikasi memiliki identitas sendiri dan tidak dianggap plagiat.
 
 ---
@@ -50,7 +50,7 @@ Ikuti langkah-langkah di bawah ini untuk mengubah identitas aplikasi.
 
 ---
 
-### **4. 📦 Modifikasi Input & Data (Pertemuan 6-13)**
+### **4. 📦 Modifikasi Input & Data (Pertemuan 6-14)**
 
 #### **A. Checkbox & Pilihan (Pertemuan 6)**
 * **File:** `checkbox_screen.dart`
@@ -84,6 +84,11 @@ Ikuti langkah-langkah di bawah ini untuk mengubah identitas aplikasi.
 * **Aset:** Ganti file `music.mp3` di folder `assets/audio/` dan `video.mp4` di `assets/video/` dengan file milikmu.
 * **Ubah:** Ganti gambar cover album di tampilan Audio Player.
 
+#### **H. Map API / Peta (Pertemuan 14)**
+* **File:** `maps_screen.dart` (atau `maps_page.dart`)
+* **Ubah Koordinat:** Ganti nilai `LatLng` default dengan koordinat lokasi rumah atau kampus Anda.
+* **Ubah Marker:** Ganti warna atau ikon marker pada `MarkerLayer`.
+
 ---
 
 ## 💻 **CARA RUN**
@@ -96,6 +101,12 @@ Ikuti langkah-langkah di bawah ini untuk mengubah identitas aplikasi.
 2.  **Jalankan Aplikasi**:
     ```bash
     flutter run
+    ```
+3. **Jalankan di Chrome** (Web):
+⚠️ **PENTING UNTUK VIDEO PLAYER:**
+Jika menjalankan di browser Chrome dan video terasa patah-patah (lag), **WAJIB** gunakan perintah Mode Release berikut agar lancar:
+    ```bash
+    flutter run -d chrome --release
     ```
 
 ### **⚠️ Troubleshooting (Solusi Error)**
@@ -118,3 +129,6 @@ Ikuti langkah-langkah di bawah ini untuk mengubah identitas aplikasi.
 * [`audioplayers`](https://pub.dev/packages/audioplayers) (Pertemuan 13)
 * [`video_player`](https://pub.dev/packages/video_player) (Pertemuan 13)
 * [`chewie`](https://pub.dev/packages/chewie) (Pertemuan 13)
+* [`flutter_map`](https://pub.dev/packages/flutter_map) (Pertemuan 14)
+* [`latlong2`](https://pub.dev/packages/latlong2) (Pertemuan 14)
+* [`location`](https://pub.dev/packages/location) (Pertemuan 14)
