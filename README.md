@@ -131,4 +131,4 @@ Jika menjalankan di browser Chrome dan video terasa patah-patah (lag), **WAJIB**
 * [`chewie`](https://pub.dev/packages/chewie) (Pertemuan 13)
 * [`flutter_map`](https://pub.dev/packages/flutter_map) (Pertemuan 14)
 * [`latlong2`](https://pub.dev/packages/latlong2) (Pertemuan 14)
-* [`location`](https://pub.dev/packages/location) (Pertemuan 14) 
+* [`geolocator`](https://pub.dev/packages/geolocator) (Pertemuan 14)
