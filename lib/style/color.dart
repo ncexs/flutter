@@ -14,4 +14,4 @@ const Color buttonColor = Color(0xff065CF0); // Warna tombol
 const Color textColor1 = Color(
   0xff1A1F2B,
 ); // Teks Judul (Hampir hitam, tidak pekat)
-const Color textColor2 = Color(0xff7D8799);       // Teks Deskripsi (Abu-abu soft)
+const Color textColor2 = Color(0xff7D8799); // Teks Deskripsi (Abu-abu soft)
