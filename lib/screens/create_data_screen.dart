@@ -22,6 +22,7 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
       lastDate: DateTime(2030),
     );
 
+    if (!mounted) return;
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
         _selectedDate = pickedDate;
@@ -36,6 +37,7 @@ class _CreateDataScreenState extends State<CreateDataScreen> {
       initialTime: _selectedTime,
     );
 
+    if (!mounted) return;
     if (pickedTime != null && pickedTime != _selectedTime) {
       setState(() {
         _selectedTime = pickedTime;
