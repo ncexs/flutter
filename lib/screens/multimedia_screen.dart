@@ -218,6 +218,7 @@ class _VideoPlayerTabState extends State<VideoPlayerTab> {
 
     // 2. Setelah video berhasil dimuat (initialize), baru kita siapkan Chewie
     _videoPlayerController.initialize().then((_) {
+      if (!mounted) return;
       setState(() {
         _chewieController = ChewieController(
           videoPlayerController: _videoPlayerController,
