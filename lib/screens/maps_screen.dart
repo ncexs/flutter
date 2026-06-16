@@ -55,6 +55,7 @@ class _MapsScreenState extends State<MapsScreen> with TickerProviderStateMixin {
   Future<void> _getCurrentLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition();
+      if (!mounted) return;
       setState(() {
         _currentLocation = LatLng(position.latitude, position.longitude);
       });
